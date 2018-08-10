@@ -4,23 +4,24 @@ import PropTypes from "prop-types";
 // had to add the PropTypes as it is now seperate from REACT
 
 export class Home extends React.Component {
+    constructor(props) {
+        super();
+        this.age = props.age;
+    }
+
+    onMakeOlder() {
+        this.age += 3; 
+        console.log(this.age);
+    }
+
     render() {
         // console.log(this.props);
-        var text = "Something!";
-        return (
+         return (
             <div> 
                 <p>In a new Component !</p>
-                <p>{text}</p>
-                <p>Your name is {this.props.name}, your age is {this.props.age}</p>
-                <p>User Object => Name: {this.props.user.name}</p>
-                <div>
-                    <h4>Hobbies</h4>
-                    <ul>
-                        {this.props.user.hobbies.map((hobby) => <li>{hobby}</li>)}
-                    </ul>
-                </div>
-                <hr/>
-                    {this.props.children}
+                     <p>Your name is {this.props.name}, your age is {this.age}</p>
+                     <hr/>
+                     <button onClick={() => this.onMakeOlder()} className="btn btn-primary">Make me older!</button>
             </div>
       );
     }
@@ -28,9 +29,7 @@ export class Home extends React.Component {
 
 Home.propTypes = {
     name: PropTypes.string,
-    age: PropTypes.number,
-    user: PropTypes.object
-    // children: PropTypes.element
+    age: PropTypes.number
 };
 
 // had to remove React. from the below since PropTypes is no longer within React
